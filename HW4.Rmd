@@ -69,6 +69,9 @@ ggplot(canada, aes(x = Cocoa.Pct, fill = Company.Location)) + geom_histogram(bin
 ```
 
 
+Github repo: https://github.com/montgomeryinman/HW4
+
+Workflow: The workflow was fairly smooth. I had to look up some documentation of ggplot and dplyr (for the filtered data set), in order to get no errors for my graph, but other than that I seemed to have no problems.
 
 
 
