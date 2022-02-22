@@ -7,7 +7,7 @@ name: Montgomery Inman
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+Members: Montgomery Inman
 
 ```{r }
 choco <- read.csv("https://ds202-at-isu.github.io/labs/data/choco.csv")
