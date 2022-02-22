@@ -1,0 +1,76 @@
+---
+title: "Homework4"
+output: html_document
+name: Montgomery Inman
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r }
+choco <- read.csv("https://ds202-at-isu.github.io/labs/data/choco.csv")
+dim(choco)
+
+library(tidyverse)
+
+ggplot(choco, aes(x = as.factor(Review.Date))) + geom_bar() + ggtitle("# of Ratings vs Year")
+```
+
+Question Set 1:
+1) There are 1852 chocolate bars rated.
+2) The ratings almost increase every year from 2006 to 2015. with most of the ratings coming from the year 2015 and the least coming from 2017. 
+
+
+
+```{r}
+ggplot(choco, aes(x = Rating)) + geom_histogram()
+
+ggplot(choco, aes(x = Cocoa.Pct, y = Rating)) + geom_jitter()
+```
+```{r}
+top3 <- dplyr::filter(choco, Company.Location %in% c("U.S.A.", "France", "Canada"))
+
+ggplot(top3, aes(x = as.factor(Company.Location))) + geom_bar() + ggtitle("# of Ratings vs Location")
+
+#ggplot(top3, aes(x = Rating, fill = Company.Location)) + geom_histogram() 
+
+usa <- dplyr::filter(top3, Company.Location %in% c("U.S.A."))
+ggplot(usa, aes(x = Rating, fill = Company.Location)) + geom_histogram() 
+france <- dplyr::filter(top3, Company.Location %in% c("France"))
+ggplot(france, aes(x = Rating, fill = Company.Location)) + geom_histogram() 
+canada <- dplyr::filter(top3, Company.Location %in% c("Canada"))
+ggplot(canada, aes(x = Rating, fill = Company.Location)) + geom_histogram() 
+
+```
+
+Question Set 2:
+
+1) The histogram is unimodal and fairly symmetric, with most of the ratings falling between the 2.5 and 4 range. There are a couple of outliers; a couple on the low side of the rating and one being a 5 rating. 
+
+2) Looking at the scatterplot, there does not appear to be a direct correlation between Cocoa Percentage and the rating given. 
+
+3) Looking at the first histogram, we can see that the USA has by far the most number of ratings, while France is second, and Canada is third. Looking at the histograms for each country we can see that they follow mostly the same pattern in which the are unimodal, and left skewed. 
+
+
+
+My Own Question: What is the distribution of cocoa percentage in each of the top 3 countries with the most ratings?
+
+Answer: It seems that each country has most of their cocoa percentage coming in the 70%-75% range. I am not too sure on cocoa percentages, but I believe this is the dark chocolate percentage range. This is interesting because I would've thought milk chocolate would be more tested. Perhaps this tester likes dark chocolate more, so they tested dark chocolate more often.
+
+Code for My Own Question:
+
+
+```{r}
+ggplot(usa, aes(x = Cocoa.Pct, fill = Company.Location)) + geom_histogram(binwidth = 2)
+ggplot(france, aes(x = Cocoa.Pct, fill = Company.Location)) + geom_histogram(binwidth = 2)
+ggplot(canada, aes(x = Cocoa.Pct, fill = Company.Location)) + geom_histogram(binwidth = 2)
+```
+
+
+
+
+
+
+
